@@ -1,5 +1,5 @@
 -- Property Search Database Setup for postgis-property-search-demo-py
--- PostgreSQL Aurora PostgreSQL 15 + PostGIS 3.4 with PostGIS
+-- PostgreSQL Aurora PostgreSQL 16 with PostGIS
 
 -- Create main database
 CREATE DATABASE postgis_property_search_demo_py;

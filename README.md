@@ -9,7 +9,7 @@ A comprehensive, production-ready demonstration showcasing Real Estate/Property 
 ### 🚨 AWS Costs Warning
 **This deployment will incur AWS charges. You are responsible for all costs.**
 
-**Estimated Monthly Costs (us-west-2):**
+**Estimated Monthly Costs (us-east-1):**
 - Bastion Host (t3.micro): ~$8-12/month
 - Database (Aurora PostgreSQL cluster): ~$150-300/month
 - Storage (100GB): ~$10-15/month
@@ -239,12 +239,12 @@ aws cloudformation deploy \
         DatabaseInstanceType=db.r6g.large \
         BastionInstanceType=t3.micro \
     --capabilities CAPABILITY_IAM \
-    --region us-west-2
+    --region us-east-1
 
 # Wait for deployment completion (10-15 minutes)
 aws cloudformation wait stack-create-complete \
     --stack-name postgis-property-search-demo-py-stack \
-    --region us-west-2
+    --region us-east-1
 ```
 
 ### Step 4: Get Connection Information
@@ -254,7 +254,7 @@ BASTION_IP=$(aws cloudformation describe-stacks \
     --stack-name postgis-property-search-demo-py-stack \
     --query 'Stacks[0].Outputs[?OutputKey==`BastionHostIP`].OutputValue' \
     --output text \
-    --region us-west-2)
+    --region us-east-1)
 
 echo "Bastion Host IP: $BASTION_IP"
 
@@ -263,7 +263,7 @@ DB_ENDPOINT=$(aws cloudformation describe-stacks \
     --stack-name postgis-property-search-demo-py-stack \
     --query 'Stacks[0].Outputs[?OutputKey==`DatabaseEndpoint`].OutputValue' \
     --output text \
-    --region us-west-2)
+    --region us-east-1)
 
 echo "Database Endpoint: $DB_ENDPOINT"
 ```
@@ -789,9 +789,9 @@ psql -h $DB_ENDPOINT -U postgres postgis_property_search_demo_py < backup_202312
 
 ---
 
-**Generated on**: 2025-06-09T02:54:56.219Z
+**Generated on**: 2025-06-09T03:15:38.612Z
 **Version**: 1.0.0
-**Tested on**: AWS us-west-2
+**Tested on**: AWS us-east-1
 **PostgreSQL Version**: 15.4
 **PostGIS Version**: 3.4
 
